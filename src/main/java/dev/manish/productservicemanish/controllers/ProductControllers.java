@@ -4,29 +4,30 @@ import dev.manish.productservicemanish.dto.ProductDto;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/products")
 public class ProductControllers {
 
-    @GetMapping("/products")
+    @GetMapping()
     public String getAllProducts() {
         return "Geting All Product";
     }
 
-    @GetMapping("/products/{productId}")
+    @GetMapping("/{productId}")
     public String getSingleProduct(@PathVariable("productId") Long productId) {
         return "Geting Single Product : " + productId;
     }
 
-    @PostMapping("/products")
+    @PostMapping()
     public String addNewProduct(@RequestBody ProductDto productDto) {
         return "Adding New Product : "+ productDto;
     }
 
-    @PutMapping("/products/{productId}")
+    @PutMapping("/{productId}")
     public String updateProduct(@PathVariable("productId") Long productId) {
         return "Updating Product : " + productId;
     }
 
-    @DeleteMapping("/products/{productId}")
+    @DeleteMapping("/{productId}")
     public String deleteProduct(@PathVariable("productId") Long productId) {
         return "Deleting Product : " + productId;
     }
