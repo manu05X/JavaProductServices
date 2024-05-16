@@ -1,0 +1,13 @@
+package dev.manish.productservicemanish.services;
+
+public class FakeStoreCategoryService implements CategoryService{
+    @Override
+    public String getAllCategories() {
+        return "";
+    }
+
+    @Override
+    public String getProductsInCategory(Long categoryId) {
+        return "";
+    }
+}
