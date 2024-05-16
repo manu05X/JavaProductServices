@@ -1,5 +1,6 @@
 package dev.manish.productservicemanish.controllers;
 
+import dev.manish.productservicemanish.dto.ProductDto;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,8 +17,8 @@ public class ProductControllers {
     }
 
     @PostMapping("/products")
-    public String addNewProduct() {
-        return "Adding New Product. ";
+    public String addNewProduct(@RequestBody ProductDto productDto) {
+        return "Adding New Product : "+ productDto;
     }
 
     @PutMapping("/products/{productId}")
