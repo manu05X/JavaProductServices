@@ -8,13 +8,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/product/categories")
-public class CategoryController implements CategoryService {
-    @Override
+public class CategoryController {
+
+    public CategoryService categoryService;
+
+    public CategoryController(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
+
     @GetMapping()
     public String getAllCategories() {
         return "Getting all categories";
     }
-    @Override
+
     @GetMapping("/{categoryId}")
     public String getProductsInCategory(@PathVariable("categoryId") Long categoryId) {
         return "Getting product in category";

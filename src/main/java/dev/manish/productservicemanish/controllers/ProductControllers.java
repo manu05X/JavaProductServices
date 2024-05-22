@@ -1,11 +1,18 @@
 package dev.manish.productservicemanish.controllers;
 
 import dev.manish.productservicemanish.dto.ProductDto;
+import dev.manish.productservicemanish.services.ProductService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/products")
 public class ProductControllers {
+
+    private ProductService productService;
+
+    public ProductControllers(ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping()
     public String getAllProducts() {

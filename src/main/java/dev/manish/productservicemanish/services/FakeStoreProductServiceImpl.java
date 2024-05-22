@@ -1,7 +1,9 @@
 package dev.manish.productservicemanish.services;
 
 import dev.manish.productservicemanish.dto.ProductDto;
+import org.springframework.stereotype.Service;
 
+@Service
 public class FakeStoreProductServiceImpl implements ProductService{
     @Override
     public String getAllProducts() {
