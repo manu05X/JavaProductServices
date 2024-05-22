@@ -1,5 +1,6 @@
 package dev.manish.productservicemanish.controllers;
 
+import dev.manish.productservicemanish.dto.GetSingleProductResponseDto;
 import dev.manish.productservicemanish.dto.ProductDto;
 import dev.manish.productservicemanish.services.ProductService;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +21,11 @@ public class ProductControllers {
     }
 
     @GetMapping("/{productId}")
-    public String getSingleProduct(@PathVariable("productId") Long productId) {
-        return "Geting Single Product : " + productId;
+    public GetSingleProductResponseDto getSingleProduct(@PathVariable("productId") Long productId) {
+        GetSingleProductResponseDto responseDto = new GetSingleProductResponseDto();
+        responseDto.setProduct(productService.getSingleProduct(productId));
+        //return "Geting Single Product : " + productId;
+        return responseDto;
     }
 
     @PostMapping()
