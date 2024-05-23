@@ -3,6 +3,7 @@ package dev.manish.productservicemanish.controllers;
 import dev.manish.productservicemanish.dto.AddNewProductRequestDto;
 import dev.manish.productservicemanish.dto.GetSingleProductResponseDto;
 import dev.manish.productservicemanish.dto.ProductDto;
+import dev.manish.productservicemanish.models.Category;
 import dev.manish.productservicemanish.models.Product;
 import dev.manish.productservicemanish.services.ProductService;
 import org.springframework.http.HttpStatus;
@@ -77,9 +78,21 @@ public class ProductControllers {
         //return "Adding New Product : "+ productDto;
     }
 
-    @PutMapping("/{productId}")
-    public String updateProduct(@PathVariable("productId") Long productId) {
-        return "Updating Product : " + productId;
+    @PatchMapping("/{productId}")
+    public Product updateProduct(@PathVariable("productId") Long productId,
+                                 @RequestBody ProductDto productDto) {
+
+        Product productToUpdate = new Product();
+        productToUpdate.setId(productDto.getId());
+
+        productToUpdate.setCategory(new Category());
+        productToUpdate.getCategory().setName(productDto.getCategory());
+
+        productToUpdate.setTitle(productDto.getTitle());
+        productToUpdate.setPrice(productDto.getPrice());
+        productToUpdate.setDescription(productDto.getDescription());
+
+        return productService.updateProduct(productId, productToUpdate);
     }
 
     @DeleteMapping("/{productId}")
