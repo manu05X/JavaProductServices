@@ -1,5 +1,6 @@
 package dev.manish.productservicemanish.controllers;
 
+import dev.manish.productservicemanish.dto.AddNewProductRequestDto;
 import dev.manish.productservicemanish.dto.GetSingleProductResponseDto;
 import dev.manish.productservicemanish.dto.ProductDto;
 import dev.manish.productservicemanish.models.Product;
@@ -11,6 +12,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -24,8 +26,10 @@ public class ProductControllers {
     }
 
     @GetMapping()
-    public String getAllProducts() {
-        return "Geting All Product";
+    public List<Product> getAllProducts() {
+        return productService.getAllProducts();
+
+        //return "Geting All Product";
     }
 
 //    @GetMapping("/{productId}")
@@ -60,8 +64,17 @@ public class ProductControllers {
     }
 
     @PostMapping()
-    public String addNewProduct(@RequestBody ProductDto productDto) {
-        return "Adding New Product : "+ productDto;
+    public ResponseEntity<Product> addNewProduct(@RequestBody ProductDto product) {
+        Product newProduct = productService.addNewProduct(
+                product
+        );
+
+        ResponseEntity<Product> response = new ResponseEntity(
+                newProduct,
+                HttpStatus.OK
+        );
+        return response;
+        //return "Adding New Product : "+ productDto;
     }
 
     @PutMapping("/{productId}")
