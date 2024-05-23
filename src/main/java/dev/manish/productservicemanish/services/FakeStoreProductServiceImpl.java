@@ -200,7 +200,22 @@ public class FakeStoreProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Product deleteProduct(Long productId) {
+    public boolean deleteProduct(Long productId) {
+        ResponseEntity<Void> responseEntity = requestForEntity(
+                HttpMethod.DELETE,
+                "https://fakestoreapi.com/products/{id}",
+                null,
+                Void.class,
+                productId
+        );
+
+        // Check if the delete operation was successful
+        return responseEntity.getStatusCode().is2xxSuccessful();
+    }
+
+    /*
+    @Override
+    public boolean deleteProduct(Long productId) {
         // Prepare a RestTemplate instance to execute HTTP requests
         RestTemplate restTemplate = restTemplateBuilder.build();
 
@@ -222,9 +237,15 @@ public class FakeStoreProductServiceImpl implements ProductService{
         // Convert the response body (deleted product) from FakeStoreProductDto to Product object
         FakeStoreProductDto deletedProduct = responseEntity.getBody();
 
+        if(deletedProduct != null) {
+            return true;
+        } else {
+            return false;
+        }
         // Return the deleted product
-        return convertFakeStoreProductDtoToProduct(deletedProduct);
+       // return convertFakeStoreProductDtoToProduct(deletedProduct);
     }
+     */
 
     private Product convertFakeStoreProductDtoToProduct(FakeStoreProductDto fakeStoreProductDto) {
         Product product = new Product();
