@@ -95,8 +95,16 @@ public class ProductControllers {
         return productService.updateProduct(productId, productToUpdate);
     }
 
+    /*
     @DeleteMapping("/{productId}")
     public Product deleteProduct(@PathVariable("productId") Long productId) {
+        return productService.deleteProduct(productId);
+        //return "Deleting Product : " + productId;
+    }
+    */
+
+    @DeleteMapping("/{productId}")
+    public boolean deleteProduct(@PathVariable("productId") Long productId) {
         return productService.deleteProduct(productId);
         //return "Deleting Product : " + productId;
     }
