@@ -200,8 +200,30 @@ public class FakeStoreProductServiceImpl implements ProductService{
     }
 
     @Override
-    public boolean deleteProduct(Long productId) {
-        return false;
+    public Product deleteProduct(Long productId) {
+        // Prepare a RestTemplate instance to execute HTTP requests
+        RestTemplate restTemplate = restTemplateBuilder.build();
+
+        // Prepare a request callback to set the accept header for the HTTP request
+        RequestCallback requestCallback = restTemplate.acceptHeaderRequestCallback(FakeStoreProductDto.class);
+
+        // Prepare a response extractor to extract the response entity from the HTTP response
+        ResponseExtractor<ResponseEntity<FakeStoreProductDto>> responseExtractor = restTemplate.responseEntityExtractor(FakeStoreProductDto.class);
+
+        // Execute an HTTP DELETE request to the specific product URL with the provided ID
+        ResponseEntity<FakeStoreProductDto> responseEntity = restTemplate.execute(
+                "https://fakestoreapi.com/products/{id}",             // URL of the specific product to be deleted
+                HttpMethod.DELETE,             // HTTP DELETE method
+                requestCallback,               // Request callback to set accept header
+                responseExtractor,             // Response extractor to extract response entity
+                productId                             // ID of the product to be deleted
+        );
+
+        // Convert the response body (deleted product) from FakeStoreProductDto to Product object
+        FakeStoreProductDto deletedProduct = responseEntity.getBody();
+
+        // Return the deleted product
+        return convertFakeStoreProductDtoToProduct(deletedProduct);
     }
 
     private Product convertFakeStoreProductDtoToProduct(FakeStoreProductDto fakeStoreProductDto) {
