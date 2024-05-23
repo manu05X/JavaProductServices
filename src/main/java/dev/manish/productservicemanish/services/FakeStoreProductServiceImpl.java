@@ -20,6 +20,37 @@ public class FakeStoreProductServiceImpl implements ProductService{
     public FakeStoreProductServiceImpl(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplateBuilder = restTemplateBuilder;
     }
+//    @Override
+//    public List<Product> getAllProducts() {
+//        RestTemplate restTemplate = restTemplateBuilder.build();
+//        ResponseEntity<List> response= restTemplate.getForEntity(
+//                "https://fakestoreapi.com/products",
+//                List.class); // here we have not specified any short what from of list it is so java assume it to be object of LinkedHashMap
+//        //By default restTemplate tried to convert whatever object it gets into a HashMap rather than converting it into object of real class
+//
+//        List<Product> answer = new ArrayList<>();
+//        for (Object object : response.getBody()) {
+//            ProductDto productDto = (ProductDto) object;
+//
+//            Product product = new Product();
+//
+//            product.setId(productDto.getId());
+//            product.setTitle(productDto.getTitle());
+//            product.setPrice(productDto.getPrice());
+//
+//            Category category = new Category();
+//            category.setName(productDto.getCategory());
+//            product.setCategory(category);
+//
+//            product.setImageUrl(productDto.getImage());
+//
+//            answer.add(product);
+//        }
+//
+//
+//        //return null;
+//        return answer;
+//    }
 
     @Override
     public List<Product> getAllProducts() {
