@@ -199,6 +199,7 @@ public class FakeStoreProductServiceImpl implements ProductService{
         return null;
     }
 
+    /*
     @Override
     public boolean deleteProduct(Long productId) {
         ResponseEntity<Void> responseEntity = requestForEntity(
@@ -212,8 +213,9 @@ public class FakeStoreProductServiceImpl implements ProductService{
         // Check if the delete operation was successful
         return responseEntity.getStatusCode().is2xxSuccessful();
     }
+     */
 
-    /*
+
     @Override
     public boolean deleteProduct(Long productId) {
         // Prepare a RestTemplate instance to execute HTTP requests
@@ -245,7 +247,7 @@ public class FakeStoreProductServiceImpl implements ProductService{
         // Return the deleted product
        // return convertFakeStoreProductDtoToProduct(deletedProduct);
     }
-     */
+
 
     private Product convertFakeStoreProductDtoToProduct(FakeStoreProductDto fakeStoreProductDto) {
         Product product = new Product();
