@@ -1,5 +1,6 @@
 package dev.manish.productservicemanish.services;
 
+import dev.manish.productservicemanish.dto.FakeStoreProductDto;
 import dev.manish.productservicemanish.dto.GetSingleProductResponseDto;
 import dev.manish.productservicemanish.dto.ProductDto;
 import dev.manish.productservicemanish.models.Category;
@@ -55,24 +56,24 @@ public class FakeStoreProductServiceImpl implements ProductService{
     @Override
     public List<Product> getAllProducts() {
         RestTemplate restTemplate = restTemplateBuilder.build();
-        ResponseEntity<ProductDto[]> response= restTemplate.getForEntity(
+        ResponseEntity<FakeStoreProductDto[]> response= restTemplate.getForEntity(
                 "https://fakestoreapi.com/products",
-                ProductDto[].class);
+                FakeStoreProductDto[].class);
 
         List<Product> products = new ArrayList<>();
-        for(ProductDto x : response.getBody()) {
+        for(FakeStoreProductDto fakeStoreProductDto : response.getBody()) {
 
             Product product = new Product();
 
-            product.setId(x.getId());
-            product.setTitle(x.getTitle());
-            product.setPrice(x.getPrice());
+            product.setId(fakeStoreProductDto.getId());
+            product.setTitle(fakeStoreProductDto.getTitle());
+            product.setPrice(fakeStoreProductDto.getPrice());
 
             Category category = new Category();
-            category.setName(x.getCategory());
+            category.setName(fakeStoreProductDto.getCategory());
 
             product.setCategory(category);
-            product.setImageUrl(x.getImage());
+            product.setImageUrl(fakeStoreProductDto.getImage());
 
             products.add(product);
         }
@@ -89,22 +90,26 @@ public class FakeStoreProductServiceImpl implements ProductService{
     @Override
     public Product getSingleProduct(Long productId) {
         RestTemplate restTemplate = restTemplateBuilder.build();
-        ResponseEntity<ProductDto> response = restTemplate.getForEntity("https://fakestoreapi.com/products/{id}", ProductDto.class, productId);
+        ResponseEntity<FakeStoreProductDto> response = restTemplate.getForEntity(
+                "https://fakestoreapi.com/products/{id}",
+                FakeStoreProductDto.class,
+                productId
+        );
 
-        ProductDto productDto = response.getBody(); // this is the reponse we get in response body
+        FakeStoreProductDto fakeStoreProductDto = response.getBody(); // this is the response we get in response body
         //But we need to return Product not productDto
         //So Convert it into product
         Product product = new Product();
 
-        product.setId(productDto.getId());
-        product.setTitle(productDto.getTitle());
-        product.setPrice(productDto.getPrice());
+        product.setId(fakeStoreProductDto.getId());
+        product.setTitle(fakeStoreProductDto.getTitle());
+        product.setPrice(fakeStoreProductDto.getPrice());
 
         Category category = new Category();
-        category.setName(productDto.getCategory());
+        category.setName(fakeStoreProductDto.getCategory());
         product.setCategory(category);
 
-        product.setImageUrl(productDto.getImage());
+        product.setImageUrl(fakeStoreProductDto.getImage());
 
         return product;
 
