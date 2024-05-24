@@ -3,6 +3,7 @@ package dev.manish.productservicemanish.services;
 import dev.manish.productservicemanish.dto.FakeStoreProductDto;
 import dev.manish.productservicemanish.dto.GetSingleProductResponseDto;
 import dev.manish.productservicemanish.dto.ProductDto;
+import dev.manish.productservicemanish.exceptions.ProductNotFoundException;
 import dev.manish.productservicemanish.models.Category;
 import dev.manish.productservicemanish.models.Product;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -106,7 +107,7 @@ public class FakeStoreProductServiceImpl implements ProductService{
      */
 
     @Override
-    public Product getSingleProduct(Long productId) {
+    public Product getSingleProduct(Long productId) throws ProductNotFoundException {
        // RestTemplate restTemplate = restTemplateBuilder.build();// not working
 
         RestTemplate restTemplate = restTemplateBuilder.requestFactory(
@@ -117,6 +118,10 @@ public class FakeStoreProductServiceImpl implements ProductService{
                 FakeStoreProductDto.class,
                 productId
         );
+
+        if(response.getBody() == null){
+            throw new ProductNotFoundException("Product with id " + productId + " not found");
+        }
 
         FakeStoreProductDto fakeStoreProductDto = response.getBody(); // this is the response we get in response body
         //But we need to return Product not productDto

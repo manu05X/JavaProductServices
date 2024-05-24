@@ -1,8 +1,10 @@
 package dev.manish.productservicemanish.controllers;
 
 import dev.manish.productservicemanish.dto.AddNewProductRequestDto;
+import dev.manish.productservicemanish.dto.ExceptionDto;
 import dev.manish.productservicemanish.dto.GetSingleProductResponseDto;
 import dev.manish.productservicemanish.dto.ProductDto;
+import dev.manish.productservicemanish.exceptions.ProductNotFoundException;
 import dev.manish.productservicemanish.models.Category;
 import dev.manish.productservicemanish.models.Product;
 import dev.manish.productservicemanish.services.ProductService;
@@ -43,7 +45,7 @@ public class ProductControllers {
 //    }
 
     @GetMapping("/{productId}")
-    public ResponseEntity<Product> getSingleProduct(@PathVariable("productId") Long productId) {
+    public ResponseEntity<Product> getSingleProduct(@PathVariable("productId") Long productId) throws ProductNotFoundException {
 //        GetSingleProductResponseDto responseDto = new GetSingleProductResponseDto();
 //        responseDto.setProduct(
         //Map<String,String> headers = new HashMap<>();
@@ -107,5 +109,18 @@ public class ProductControllers {
     public boolean deleteProduct(@PathVariable("productId") Long productId) {
         return productService.deleteProduct(productId);
         //return "Deleting Product : " + productId;
+    }
+
+    //Method 1 way to implement exception
+    @ExceptionHandler(ProductNotFoundException.class)
+    private ResponseEntity<ExceptionDto> handleProductNotFoundException(ProductNotFoundException e) {
+
+        ExceptionDto exceptionDto = new ExceptionDto();
+        exceptionDto.setMessage(e.getMessage());
+        exceptionDto.setStatus("Failure");
+
+        ResponseEntity<ExceptionDto> response = new ResponseEntity(exceptionDto, HttpStatus.NOT_FOUND);
+
+        return response;
     }
 }

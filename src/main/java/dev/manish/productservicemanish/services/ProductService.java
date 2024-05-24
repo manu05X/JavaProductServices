@@ -1,6 +1,7 @@
 package dev.manish.productservicemanish.services;
 
 import dev.manish.productservicemanish.dto.ProductDto;
+import dev.manish.productservicemanish.exceptions.ProductNotFoundException;
 import dev.manish.productservicemanish.models.Category;
 import dev.manish.productservicemanish.models.Product;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +12,7 @@ public interface ProductService {
 
     List<Product> getAllProducts();
 
-    Product getSingleProduct(Long productId);
+    Product getSingleProduct(Long productId) throws ProductNotFoundException;
 
 
     Product addNewProduct(ProductDto product);
