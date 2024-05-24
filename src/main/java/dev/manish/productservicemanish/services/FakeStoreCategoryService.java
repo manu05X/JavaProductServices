@@ -1,5 +1,6 @@
 package dev.manish.productservicemanish.services;
 
+
 import dev.manish.productservicemanish.client.fakestoreapi.FakeStoreProductDto;
 import dev.manish.productservicemanish.models.Product;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -15,10 +16,8 @@ import java.util.List;
 public class FakeStoreCategoryService implements CategoryService{
     private  RestTemplateBuilder restTemplateBuilder;
 
-
-    public FakeStoreCategoryService(RestTemplateBuilder restTemplateBuildert) {
+    public FakeStoreCategoryService(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplateBuilder = restTemplateBuilder;
-
     }
 
     @Override
@@ -29,7 +28,6 @@ public class FakeStoreCategoryService implements CategoryService{
                 String[].class);
         return Arrays.asList(response.getBody());
     }
-
 
     @Override
     public List<Product> getProductsInCategory(String categoryName) {
