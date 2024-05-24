@@ -126,6 +126,7 @@ public class ProductControllers {
     }
      */
 
+    /*
     //This is prefered way
     @ExceptionHandler(ProductNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
@@ -137,4 +138,5 @@ public class ProductControllers {
 
         return exceptionDto;
     }
+    */
 }
