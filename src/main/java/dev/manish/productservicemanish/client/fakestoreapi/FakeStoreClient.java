@@ -43,28 +43,6 @@ public class FakeStoreClient {
 
         return Arrays.asList(response.getBody());
 
-//
-//        List<Product> products = new ArrayList<>();
-//        for(FakeStoreProductDto fakeStoreProductDto : response.getBody()) {
-//            /*
-//            Product product = new Product();
-//
-//            product.setId(fakeStoreProductDto.getId());
-//            product.setTitle(fakeStoreProductDto.getTitle());
-//            product.setPrice(fakeStoreProductDto.getPrice());
-//
-//            Category category = new Category();
-//            category.setName(fakeStoreProductDto.getCategory());
-//
-//            product.setCategory(category);
-//            product.setImageUrl(fakeStoreProductDto.getImage());
-//             */
-//            products.add(convertFakeStoreProductDtoToProduct(fakeStoreProductDto));
-//        }
-//        //return null;
-//        return products;
-//        return null;
-
     }
 
     public FakeStoreProductDto getSingleProduct(Long productId) throws ProductNotFoundException{
@@ -86,23 +64,6 @@ public class FakeStoreClient {
         FakeStoreProductDto fakeStoreProductDto = response.getBody(); // this is the response we get in response body
 
         return fakeStoreProductDto;
-        //But we need to return Product not productDto
-        //So Convert it into product
-        /*
-        Product product = new Product();
-
-        product.setId(fakeStoreProductDto.getId());
-        product.setTitle(fakeStoreProductDto.getTitle());
-        product.setPrice(fakeStoreProductDto.getPrice());
-
-        Category category = new Category();
-        category.setName(fakeStoreProductDto.getCategory());
-        product.setCategory(category);
-
-        product.setImageUrl(fakeStoreProductDto.getImage());
-         */
-
-        //return convertFakeStoreProductDtoToProduct(fakeStoreProductDto);
     }
 
 
@@ -113,23 +74,6 @@ public class FakeStoreClient {
                 product,
                 FakeStoreProductDto.class
         );
-/*
-        ProductDto productDto = response.getBody();
-
-        Product product1 = new Product();
-        //product1.setId(productDto.getId());
-        product1.setTitle(productDto.getTitle());
-        product1.setPrice(productDto.getPrice());
-
-        Category category = new Category();
-        category.setName(productDto.getCategory());
-        product1.setCategory(category);
-
-        product1.setImageUrl(productDto.getImage());
-
-        return product1;
-
-*/
         FakeStoreProductDto fakeStoreProductDto = response.getBody();
 
         return fakeStoreProductDto;
@@ -146,16 +90,6 @@ public class FakeStoreClient {
         fakeStoreProductDto.setTitle(product.getTitle());
         fakeStoreProductDto.setCategory(product.getCategory().getName());
 
-//        ResponseEntity<FakeStoreProductDto> fakeStoreProductDtoResponseEntity = requestForEntity(
-//                HttpMethod.PATCH,
-//                "https://fakestoreapi.com/products/{id}",
-//                fakeStoreProductDto,
-//                FakeStoreProductDto.class,
-//                productId
-//                );
-//
-
-        //return convertFakeStoreProductDtoToProduct(fakeStoreProductDtoResponseEntity.getBody());
 
         FakeStoreProductDto fakeStoreProductDtoResponse = restTemplate.patchForObject(
                 "https://fakestoreapi.com/products/{id}",
@@ -165,8 +99,6 @@ public class FakeStoreClient {
         );
 
         return fakeStoreProductDtoResponse;
-
-       // return convertFakeStoreProductDtoToProduct(fakeStoreProductDtoResponse);
 
     }
 
@@ -214,13 +146,6 @@ public class FakeStoreClient {
         // Convert the response body (deleted product) from FakeStoreProductDto to Product object
         FakeStoreProductDto deletedProduct = responseEntity.getBody();
 
-//        if(deletedProduct != null) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-        // Return the deleted product
-        //return convertFakeStoreProductDtoToProduct(deletedProduct);
 
         return deletedProduct;
     }
