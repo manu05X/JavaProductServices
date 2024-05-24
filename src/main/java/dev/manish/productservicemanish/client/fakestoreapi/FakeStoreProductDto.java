@@ -1,5 +1,6 @@
-package dev.manish.productservicemanish.dto;
+package dev.manish.productservicemanish.client.fakestoreapi;
 
+import dev.manish.productservicemanish.dto.RatingDto;
 import jakarta.annotation.Nullable;
 import lombok.Getter;
 import lombok.Setter;

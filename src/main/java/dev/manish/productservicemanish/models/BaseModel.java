@@ -11,7 +11,7 @@ import java.util.Date;
     private Long id;
     private Date createdAt;
     private Date lastUpdatedAt;
-
+}
 //    public Long getId() {
 //        return this.id;
 //    }
@@ -35,4 +35,4 @@ import java.util.Date;
 //    public void setLastUpdatedAt(Date lastUpdatedAt) {
 //        this.lastUpdatedAt = lastUpdatedAt;
 //    }
-}
+//}

@@ -1,7 +1,6 @@
 package dev.manish.productservicemanish.services;
 
-import dev.manish.productservicemanish.dto.FakeStoreProductDto;
-import dev.manish.productservicemanish.dto.GetSingleProductResponseDto;
+import dev.manish.productservicemanish.client.fakestoreapi.FakeStoreProductDto;
 import dev.manish.productservicemanish.dto.ProductDto;
 import dev.manish.productservicemanish.exceptions.ProductNotFoundException;
 import dev.manish.productservicemanish.models.Category;
@@ -19,7 +18,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class FakeStoreProductServiceImpl implements ProductService{

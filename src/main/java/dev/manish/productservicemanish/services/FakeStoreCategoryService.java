@@ -1,6 +1,6 @@
 package dev.manish.productservicemanish.services;
 
-import dev.manish.productservicemanish.dto.FakeStoreProductDto;
+import dev.manish.productservicemanish.client.fakestoreapi.FakeStoreProductDto;
 import dev.manish.productservicemanish.models.Product;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
