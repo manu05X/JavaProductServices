@@ -111,6 +111,7 @@ public class ProductControllers {
         //return "Deleting Product : " + productId;
     }
 
+    /*
     //Method 1 way to implement exception
     @ExceptionHandler(ProductNotFoundException.class)
     private ResponseEntity<ExceptionDto> handleProductNotFoundException(ProductNotFoundException e) {
@@ -122,5 +123,18 @@ public class ProductControllers {
         ResponseEntity<ExceptionDto> response = new ResponseEntity(exceptionDto, HttpStatus.NOT_FOUND);
 
         return response;
+    }
+     */
+
+    //This is prefered way
+    @ExceptionHandler(ProductNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseBody
+    private ExceptionDto handleProductNotFoundException(ProductNotFoundException e) {
+        ExceptionDto exceptionDto = new ExceptionDto();
+        exceptionDto.setMessage(e.getMessage());
+        exceptionDto.setStatus("NOT_FOUND");
+
+        return exceptionDto;
     }
 }
