@@ -1,13 +1,16 @@
 package dev.manish.productservicemanish.controllers;
 
+import dev.manish.productservicemanish.models.Product;
 import dev.manish.productservicemanish.services.CategoryService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/product/categories")
+@RequestMapping("/products")
 public class CategoryController {
 
     public CategoryService categoryService;
@@ -16,13 +19,15 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping()
-    public String getAllCategories() {
-        return "Getting all categories";
+    @GetMapping("/categories")
+    public List<String> getAllCategories() {
+        //return "Getting all categories";
+        return categoryService.getAllCategories();
     }
-
-    @GetMapping("/{categoryId}")
-    public String getProductsInCategory(@PathVariable("categoryId") Long categoryId) {
-        return "Getting product in category";
+    //category/jewelery
+    @GetMapping("/category/{categoryName}")
+    public List<Product> getProductsInCategory(@PathVariable("categoryName") String categoryName) {
+        //return "Getting product in category";
+        return categoryService.getProductsInCategory(categoryName);
     }
 }
