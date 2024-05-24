@@ -97,6 +97,21 @@ public class ProductControllers {
         return productService.updateProduct(productId, productToUpdate);
     }
 
+    @PutMapping("/{productId}")
+    public Product replaceProduct(@PathVariable("productId") Long productId, @RequestBody ProductDto productDto) {
+        Product productToUpdate = new Product();
+        productToUpdate.setId(productDto.getId());
+
+        productToUpdate.setCategory(new Category());
+        productToUpdate.getCategory().setName(productDto.getCategory());
+
+        productToUpdate.setTitle(productDto.getTitle());
+        productToUpdate.setPrice(productDto.getPrice());
+        productToUpdate.setDescription(productDto.getDescription());
+
+        return productService.updateProduct(productId, productToUpdate);
+    }
+
     /*
     @DeleteMapping("/{productId}")
     public Product deleteProduct(@PathVariable("productId") Long productId) {

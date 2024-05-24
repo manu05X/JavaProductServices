@@ -15,8 +15,10 @@ import java.util.List;
 public class FakeStoreCategoryService implements CategoryService{
     private  RestTemplateBuilder restTemplateBuilder;
 
-    public FakeStoreCategoryService(RestTemplateBuilder restTemplateBuilder) {
+
+    public FakeStoreCategoryService(RestTemplateBuilder restTemplateBuildert) {
         this.restTemplateBuilder = restTemplateBuilder;
+
     }
 
     @Override
@@ -27,6 +29,7 @@ public class FakeStoreCategoryService implements CategoryService{
                 String[].class);
         return Arrays.asList(response.getBody());
     }
+
 
     @Override
     public List<Product> getProductsInCategory(String categoryName) {
