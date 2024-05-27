@@ -1,9 +1,7 @@
 package dev.manish.productservicemanish.models;
 
 import dev.manish.productservicemanish.dto.ProductDto;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,7 +21,19 @@ public class Product extends BaseModel{
     private String title;
     private double price;
     private String description;
-    @ManyToOne
+    //@ManyToOne(cascade = {CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
     private String imageUrl;
 }
+
+/**
+ * Relation btween Product and Category
+ *
+ * P : C
+ * 1 -> 1
+ * m <- 1
+ *
+ * m <-> 1  Ans
+ *
+ * */

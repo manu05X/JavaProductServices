@@ -16,3 +16,15 @@ public class Category extends BaseModel{
     @OneToMany(mappedBy = "category")
     private List<Product> products;
 }
+
+
+/**
+ * Relation btween Category and Product
+ *
+ * C : P
+ * 1 -> m
+ * 1 <- 1
+ *
+ * 1 <-> 1  Ans
+ *
+ * */
