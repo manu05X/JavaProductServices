@@ -20,6 +20,8 @@ public class User {
  * Like Table Per Class. Only diff -> No table for parent class.
  *  @MappedSuperclass - It will create table only for child with columns inherited from Parent
  *
+ *  - Only 3 table will be created i.e for all of the child class but the table of child class will have the
+ *      attributes of parent.
  *
  *
  *   - USER
