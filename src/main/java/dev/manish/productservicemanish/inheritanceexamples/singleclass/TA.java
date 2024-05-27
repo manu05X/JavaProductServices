@@ -1,13 +1,15 @@
-package dev.manish.productservicemanish.inheritanceexamples.tableperclass;
+package dev.manish.productservicemanish.inheritanceexamples.singleclass;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Entity(name = "tbc_ta")
-public class TA extends User{
+@Entity(name = "st_ta")
+@DiscriminatorValue("1")
+public class TA extends User {
     private double averageRating;
 }
 

@@ -1,13 +1,15 @@
-package dev.manish.productservicemanish.inheritanceexamples.tableperclass;
+package dev.manish.productservicemanish.inheritanceexamples.singleclass;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Entity(name="tbc_instructor")
-public class Instructor extends User{
+@Entity(name="st_instructor")
+@DiscriminatorValue("3")
+public class Instructor extends User {
     private boolean isHandsome;
 }
 /*
