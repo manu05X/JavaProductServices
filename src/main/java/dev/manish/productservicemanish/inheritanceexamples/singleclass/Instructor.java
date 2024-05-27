@@ -12,6 +12,3 @@ import lombok.Setter;
 public class Instructor extends User {
     private boolean isHandsome;
 }
-/*
- * Have all the attributes of parent and its own i.e isHandsome in the db table
- * */

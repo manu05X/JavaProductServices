@@ -12,7 +12,3 @@ import lombok.Setter;
 public class TA extends User {
     private double averageRating;
 }
-
-/*
-* Have all the attributes of parent and its own i.e averageRating in the db table
-* */

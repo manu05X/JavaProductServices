@@ -14,6 +14,3 @@ public class Mentor extends User {
     private int numberOfMentees;
 }
 
-/*
- * Have all the attributes of parent and its own i.e numberOfSessions and numberOfMentees in the db table
- * */
